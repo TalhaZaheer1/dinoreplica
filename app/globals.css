@@ -1,26 +1,93 @@
 @import "tailwindcss";
 
+/* Modern Jurassic Theme - Clean, Sharp, Airy */
+/* Using HSL for better opacity handling if needed, but Hex is fine for v4 */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+
+  --background: #FAFAF9;
+  /* Stone 50 (Bone White) - Clean & Modern */
+  --foreground: #1C1917;
+  /* Stone 900 (Obsidian) - Softer than black */
+
+  /* Primary: Rust/Copper (Desert Heat) - Replaces the old dark green */
+  --primary: #C2410C;
+  /* Orange 700 */
+  --primary-foreground: #FFFFFF;
+
+  /* Secondary: Deep Jungle/Slate (Vegetation Shadows) */
+  --secondary: #0F172A;
+  /* Slate 900 */
+  --secondary-foreground: #FFFFFF;
+
+  /* Accent: Vibrant Fern/Teal (Oasis/Life) */
+  --accent: #14B8A6;
+  /* Teal 500 */
+  --accent-foreground: #FFFFFF;
+
+  --muted: #F5F5F4;
+  /* Stone 100 */
+  --muted-foreground: #78716C;
+  /* Stone 500 */
+
+  --card: #FFFFFF;
+  --card-foreground: #1C1917;
+
+  --border: #E7E5E4;
+  /* Stone 200 */
+  --ring: #C2410C;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+
+  --font-sans: var(--font-sans);
+  --font-display: 'Cinzel', serif;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0C0A09;
+    /* Stone 950 */
+    --foreground: #FAFAF9;
+
+    --primary: #EA580C;
+    /* Orange 600 - Slightly brighter for dark mode */
+    --primary-foreground: #FFFFFF;
+
+    --secondary: #1E293B;
+    /* Slate 800 */
+    --secondary-foreground: #FAFAF9;
+
+    --accent: #2DD4BF;
+    /* Teal 400 */
+
+    --muted: #1C1917;
+    --muted-foreground: #A8A29E;
+
+    --card: #1C1917;
+    --card-foreground: #FAFAF9;
+
+    --border: #292524;
+    --ring: #EA580C;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }

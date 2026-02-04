@@ -1,0 +1,109 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum InquiryStatus {
+  PENDING
+  REPLIED
+  ARCHIVED
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  role      Role     @default(USER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Category {
+  id          Int       @id @default(autoincrement())
+  name        String
+  slug        String    @unique
+  image       String?   @db.Text
+  description String?   @db.Text
+  products    Product[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Product {
+  id              Int       @id @default(autoincrement())
+  vid             Int? // Legacy D7 vid
+  nid             Int? // Legacy D7 nid
+  model           String // SKU
+  title           String
+  slug            String    @unique
+  description     String?   @db.LongText
+  
+  categoryId      Int?
+  category        Category? @relation(fields: [categoryId], references: [id])
+  
+  price           Decimal   @db.Decimal(10, 2) // Sell price
+  listPrice       Decimal?  @db.Decimal(10, 2) // Original price
+  cost            Decimal?  @db.Decimal(10, 2)
+  
+  weight          Float?
+  weightUnits     String?   @default("lb")
+  
+  length          Float?
+  width           Float?
+  height          Float?
+  dimensionsUnits String?   @default("in")
+  
+  images          Json?     // Array of strings
+  isVisible       Boolean   @default(true)
+  
+  inquiries       Inquiry[]
+  
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([categoryId])
+  @@index([slug])
+}
+
+model Inquiry {
+  id        Int      @id @default(autoincrement())
+  
+  productId Int?
+  product   Product? @relation(fields: [productId], references: [id])
+  
+  userEmail String
+  userName  String
+  company   String?
+  phone     String?
+  address   String?
+  city      String?
+  country   String?
+  zip       String?
+  
+  message   String?  @db.Text
+  freightQuote Decimal? @db.Decimal(10, 2)
+  status    InquiryStatus @default(PENDING)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  repliedAt DateTime?
+
+  @@index([productId])
+  @@index([userEmail])
+}
+
+model MailingList {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  createdAt DateTime @default(now())
+}
