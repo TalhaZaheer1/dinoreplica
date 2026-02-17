@@ -17,6 +17,13 @@ import { Button } from '@/components/ui/button';
 import { UserNav } from './UserNav';
 import { usePathname } from 'next/navigation';
 import { SubscribeButton } from './SubscribeButton';
+import { Menu } from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 export function Navbar({ user }: { user?: any }) {
   const pathname = usePathname();
@@ -66,7 +73,7 @@ export function Navbar({ user }: { user?: any }) {
               <UserNav user={session.user} />
             </>
           ) : (
-            <div className="flex gap-2">
+            <div className="hidden md:flex gap-2">
               <Button variant="ghost" size="sm" asChild>
                 <Link href="/login">Login</Link>
               </Button>
@@ -75,6 +82,52 @@ export function Navbar({ user }: { user?: any }) {
               </Button>
             </div>
           )}
+
+          {/* Mobile Menu */}
+          <div className="md:hidden">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon" className="h-10 w-10">
+                  <Menu className="h-6 w-6" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-56 p-2 rounded-xl bg-background/95 backdrop-blur-sm border-border">
+                <DropdownMenuItem asChild className="p-3 text-base font-medium cursor-pointer rounded-lg hover:bg-accent focus:bg-accent">
+                  <Link href="/products">Products</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild className="p-3 text-base font-medium cursor-pointer rounded-lg hover:bg-accent focus:bg-accent">
+                  <Link href="/about">About Us</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild className="p-3 text-base font-medium cursor-pointer rounded-lg hover:bg-accent focus:bg-accent">
+                  <Link href="/deals">Deals</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild className="p-3 text-base font-medium cursor-pointer rounded-lg hover:bg-accent focus:bg-accent">
+                  <Link href="/contact">Contact</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild className="p-3 text-base font-medium cursor-pointer rounded-lg hover:bg-accent focus:bg-accent">
+                  <Link href="/catalog">Catalog</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild className="p-3 text-base font-medium cursor-pointer rounded-lg hover:bg-accent focus:bg-accent">
+                  <Link href="/order-process">Order Process</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild className="p-3 text-base font-medium cursor-pointer rounded-lg hover:bg-accent focus:bg-accent">
+                  <Link href="/shipping">Shipping</Link>
+                </DropdownMenuItem>
+
+                {!session?.user && (
+                  <>
+                    <div className="h-px bg-border my-2" />
+                    <DropdownMenuItem asChild className="p-3 text-base font-medium cursor-pointer rounded-lg hover:bg-accent focus:bg-accent">
+                      <Link href="/login">Login</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild className="p-3 text-base font-medium cursor-pointer rounded-lg bg-primary text-primary-foreground focus:bg-primary/90 hover:bg-primary/90 justify-center mt-1">
+                      <Link href="/signup">Sign Up</Link>
+                    </DropdownMenuItem>
+                  </>
+                )}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
         </div>
       </div>
     </header>
