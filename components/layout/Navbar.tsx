@@ -35,7 +35,7 @@ export function Navbar({ user }: { user?: any }) {
         </Link>
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
           <Link href="/products" className="transition-colors hover:text-foreground/80 text-foreground/60">
-            Catalog
+            Products
           </Link>
           <Link href="/about" className="transition-colors hover:text-foreground/80 text-foreground/60">
             About Us
@@ -46,6 +46,16 @@ export function Navbar({ user }: { user?: any }) {
           <Link href="/contact" className="transition-colors hover:text-foreground/80 text-foreground/60">
             Contact
           </Link>
+          <Link href="/catalog" className="transition-colors hover:text-foreground/80 text-foreground/60">
+            Catalog
+          </Link>
+          <Link href="/order-process" className="transition-colors hover:text-foreground/80 text-foreground/60">
+            Order Process
+          </Link>
+          <Link href="/shipping" className="transition-colors hover:text-foreground/80 text-foreground/60">
+            Shipping
+          </Link>
+
         </nav>
         <div className="flex items-center gap-4">
           <NavSearch />
