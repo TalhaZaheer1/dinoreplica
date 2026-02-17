@@ -64,8 +64,45 @@ export function Navbar({ user }: { user?: any }) {
           </Link>
 
         </nav>
+
+
         <div className="flex items-center gap-4">
           <NavSearch />
+
+          {/* Mobile Menu */}
+          <div className="md:hidden">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <Menu className="h-5 w-5" />
+                  <span className="sr-only">Toggle menu</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-56 bg-white border-none">
+                <DropdownMenuItem asChild>
+                  <Link href="/products" className="cursor-pointer w-full font-medium">Products</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/about" className="cursor-pointer w-full font-medium">About Us</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/deals" className="cursor-pointer w-full font-medium">Deals</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/contact" className="cursor-pointer w-full font-medium">Contact</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/catalog" className="cursor-pointer w-full font-medium">Catalog</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/order-process" className="cursor-pointer w-full font-medium">Order Process</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/shipping" className="cursor-pointer w-full font-medium">Shipping</Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
 
           {session?.user ? (
             <>
@@ -73,7 +110,7 @@ export function Navbar({ user }: { user?: any }) {
               <UserNav user={session.user} />
             </>
           ) : (
-            <div className="hidden md:flex gap-2">
+            <div className="flex gap-2">
               <Button variant="ghost" size="sm" asChild>
                 <Link href="/login">Login</Link>
               </Button>
@@ -82,52 +119,6 @@ export function Navbar({ user }: { user?: any }) {
               </Button>
             </div>
           )}
-
-          {/* Mobile Menu */}
-          <div className="md:hidden">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="h-10 w-10">
-                  <Menu className="h-6 w-6" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-56 p-2 rounded-xl bg-background/95 backdrop-blur-sm border-border">
-                <DropdownMenuItem asChild className="p-3 text-base font-medium cursor-pointer rounded-lg hover:bg-accent focus:bg-accent">
-                  <Link href="/products">Products</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild className="p-3 text-base font-medium cursor-pointer rounded-lg hover:bg-accent focus:bg-accent">
-                  <Link href="/about">About Us</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild className="p-3 text-base font-medium cursor-pointer rounded-lg hover:bg-accent focus:bg-accent">
-                  <Link href="/deals">Deals</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild className="p-3 text-base font-medium cursor-pointer rounded-lg hover:bg-accent focus:bg-accent">
-                  <Link href="/contact">Contact</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild className="p-3 text-base font-medium cursor-pointer rounded-lg hover:bg-accent focus:bg-accent">
-                  <Link href="/catalog">Catalog</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild className="p-3 text-base font-medium cursor-pointer rounded-lg hover:bg-accent focus:bg-accent">
-                  <Link href="/order-process">Order Process</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild className="p-3 text-base font-medium cursor-pointer rounded-lg hover:bg-accent focus:bg-accent">
-                  <Link href="/shipping">Shipping</Link>
-                </DropdownMenuItem>
-
-                {!session?.user && (
-                  <>
-                    <div className="h-px bg-border my-2" />
-                    <DropdownMenuItem asChild className="p-3 text-base font-medium cursor-pointer rounded-lg hover:bg-accent focus:bg-accent">
-                      <Link href="/login">Login</Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem asChild className="p-3 text-base font-medium cursor-pointer rounded-lg bg-primary text-primary-foreground focus:bg-primary/90 hover:bg-primary/90 justify-center mt-1">
-                      <Link href="/signup">Sign Up</Link>
-                    </DropdownMenuItem>
-                  </>
-                )}
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
         </div>
       </div>
     </header>
