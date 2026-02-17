@@ -27,7 +27,7 @@ export default async function Home() {
       <section className="relative h-[700px] flex items-center justify-center text-center text-white overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/OIP-385978661.jpg"
+            src="/OIP-1776233913.jpg"
             alt="Dinosaur Hero"
             fill
             className="object-cover transition-transform duration-1000 scale-105"
